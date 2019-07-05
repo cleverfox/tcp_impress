@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=1024, user-scalable=no">
+
+  <title>Your deck.js Presentation</title>
+
+  <!-- Required stylesheet -->
+  <link rel="stylesheet" media="screen" href="../deck.js/core/deck.core.css">
+
+  <!-- Extension CSS files go here. Remove or add as needed. -->
+  <link rel="stylesheet" media="screen" href="../deck.js/extensions/goto/deck.goto.css">
+  <link rel="stylesheet" media="screen" href="../deck.js/extensions/menu/deck.menu.css">
+  <link rel="stylesheet" media="screen" href="../deck.js/extensions/navigation/deck.navigation.css">
+  <link rel="stylesheet" media="screen" href="../deck.js/extensions/status/deck.status.css">
+  <link rel="stylesheet" media="screen" href="../deck.js/extensions/scale/deck.scale.css">
+
+  <!-- Style theme. More available in /themes/style/ or create your own. -->
+  <link rel="stylesheet" media="screen" href="../deck.js/themes/style/web-2.0.css">
+
+  <!-- Transition theme. More available in /themes/transition/ or create your own. -->
+  <link rel="stylesheet" media="screen" href="../deck.js/themes/transition/horizontal-slide.css">
+
+  <!-- Basic black and white print styles -->
+  <link rel="stylesheet" media="print" href="../deck.js/core/print.css">
+
+  <!-- Required Modernizr file -->
+  <script src="../deck.js/modernizr.custom.js"></script>
+</head>
+<body>
+  <div class="deck-container">
+<style>
+p,ul {
+font-size: 1.6em;
+}
+ol{
+list-style-type: square;
+}
+</style>
+    <section class="slide">
+      <h1>TCP/IP</h1>
+    </section>
+    <section class="slide">
+      <h2>TCP/IP?</h2>
+      <h3>Ну да, это ведь не erlang, это мы слыхали...</h3>
+  <div class="slide">
+<ul>
+  <li>В начале 70х в ARPANET была система из 15 узлов сети и работал e-mail</li>
+  <li>C 1973 по 1974 в Стэнфорде разрабатывали TCP v1, TCP v2, TCP v3, IP v3 и TCP/IP v4</li>
+  <li>1975 был проведен тест между двумя сетями Stanford и University College London</li>
+</ul>
+</div>
+</section>
+
+
+<section class="slide">
+<h2>
+    <strike>Отрицание &rarr;
+   Гнев &rarr;
+    Торг &rarr;
+    Депрессия</strike> &rarr;
+    Принятие
+      </h2>
+<ul>
+  <li>в 1982 DARPA приняли TCP/IP как стандарт для своих сетей и ARPANET стал мигрировать на TCP/IP,
+закончили 1 января 1983</li>
+<li>В 1985 был трехдневный TCP/IP воркшоп для популяризации протокола. Кроме того состоялась первая
+interop конференция. С самого начала эти конференции стали посещать компании IBM и DEC.</li>
+<li>IBM, DEC и AT&amp;T были первыми крупными компаниями, которые решились внедрить TCP/IP в свои ОС,
+несмотря на то, что у них имелись собственные протоколы.</li>
+<li>В 1989 году распространение TCP/IP сильно возросло, когда в Berkeley открыло код TCP/IP для
+своего BSD UNIX. Многие компании, в том числе IBM использовали именно этот код для своих закрытых
+коммерческих реализаций TCP/IP.</li>
+<li>Microsoft это сделали в 1995, что подтвердило превосходство TCP/IP
+над другими протоколами M$ :)</li>
+</ul>
+</section>
+
+<section class="slide">
+  <h2>Как это работает</h2>
+<ul>
+<li>У каждого узла имеется свой уникальный IP адрес. Все узлы в пределах одной сети общаются друг с
+другом непосредственно, в другую сеть данные передаются через шлюз (маршрутизатор).</li>
+<li> Все слыхали о сетях класса A, B и C?
+До введения CIRD (Classless Inter-Domain Routing) в 1993 году соединение сетей было трудоемкой 
+задачей</li>
+<li>Протокол TCP работает на 4 (transport) уровне модели OSI</li>
+<li>Протокол IP работает на 3 (network) уровне модели OSI</li>
+<li>Снизу должен быть канальный уровень L2, который зависит от среды передачи.
+Cейчас это в 802.3 в ethernet, или 802.11 на wifi. 
+На мобильном интернете все сложно, чаще всего L2 выглядит там как PPP.</li>
+<li>L1 мы рассматривать не будем, там не очень интересно и далеко от темы.</li>
+</ul>
+</section>
+
+<section class="slide">
+  <h2>Как это работает</h2>
+  <h3>Протокол IP</h3>
+<ul>
+<li>Отвечает за доставку дейтаграммы из пункта A в пункт Б</li>
+<li>Не надежен</li>
+<li>Зато прост</li>
+<li>IPv4 имеет 32 разрядный IP адрес (например 195.3.252.69), много адресов зарезервировано</li>
+<li>IPv6 создан для расширения адресного пространства и решения некоторых других проблем IPv4,
+адрес 128 бит (например 2001:67c:380:34:8a51:fbff:fe48:d23e). Адресов зарезервировано
+намного больше, но этого должно хватить</li>
+<li>Из IPv6 выкинули фрагментрацию пакетов маршрутизаторами, убрали контрольную сумму, добавили
+  метки потоков и классы трафика, JumboFrame в IPv6 может достигать 4GB (пока не существует MAC которые так могут).</li>
+</ul>
+</section>
+
+<section class="slide">
+  <h2>Как это работает</h2>
+  <h3>Протокол IP</h3>
+<ul>
+<li>На сетевом интерфейсе, обычно, задается 3 параметра: IP адрес, маска и шлюз</li>
+<li>Когда (в простейшем случае) хост хочет послать дейтаграмму (вообще кадр), он определяет принадлежность пдреса получателя к подключенной
+сети (по таблице маршрутизации). Если он принадлежит к подключенной сети, хост шлет ему напрямую. Если адрес получателя оказывается в другой сети - шлем на MAC адрес шлюза.</li>
+<li>Протокол ARP выясняет MAC адреса на Ethernet и Wi-Fi.</li>
+<li>Роутер имеет несколько сетевых интерфейсов и более сложную таблицу маршрутизации.</li>
+<li>Проблема назначения IPv4 адресов сначала начала решаться через RARP, потом на смену пришел DHCP</li>
+<li>В IPv6 все продумали заранее, DHCPv6 хоть и существует, в большинстве случаев он не нужен, там
+есть SLAAC!</li>
+</ul>
+
+</section>
+
+<section class="slide">
+<h2>Динамическая маршрутизация</h2>
+<ul>
+<li>Когда локальная сеть становится большой, маршрутизаторы становится настраивать сложнее</li>
+В 1988 появился дистанционно-векторный протокол маршрутизации RIP (Routing Information Protocol),
+это положилно начало протоколу BGP.</li>
+<li>OSPFv2 (link state routing)</li>
+<li>EIGRP (гибридный проприетарный протокол Cisco)</li>
+<li>IS-IS (link state routing для ISP)</li>
+</ul>
+</section>
+
+<section class="slide">
+      <h2>Глобальная маршрутизация</h2>
+<ul>
+  <li>Сеть увеличивалась, и настройка маршрутов становилась адовой</li>
+  <li>В 1982 появился первый протокол глобальной динамической маршрутизации GGP</li>
+  <li>В 1984 разработан протокол глобальной динамической маршрутизации EGP и основана фирма Cisco
+Systems</li>
+<li>В конце 1980х была описана спецификация протокола BGP всего на трех листах</li>
+<li>Он позволил строить глобальную сеть без боли</li>
+<li>Благодаря этому в 90х интернет стал строиться с портясающей скоростью</li>
+</ul>
+</section>
+
+ <section class="slide">
+      <h2>UDP</h2>
+<ul>
+  <li>Порты отправитея и получателя, длина и контрольная сумма</li>
+  <li>больше ничего</li>
+</ul>
+</section>
+
+ <section class="slide">
+      <h2>TCP</h2>
+      <style>
+        td { border: 1px solid black; }
+      </style>
+<ul>
+  <li>Надежный</li>
+  <li>Потоковый, в результате упорядоченный, но не сохраняются границы сообщения</li>
+  <li>С установкой соединения</li>
+  <li>
+ <table>
+<caption><b>Структура заголовка</b> </caption>
+<tbody><tr align="center">
+<th colspan="1"> </th>
+<th colspan="4">0...3 </th>
+<th colspan="6">4...9 </th>
+<th colspan="6">10...15 </th>
+<th colspan="16">16...31 </th></tr>
+<tr align="center">
+<th colspan="1">0 </th>
+<td colspan="16">Порт источника, <b>Source Port</b></td>
+<td colspan="16">Порт назначения, <b>Destination Port</b></td>
+</tr>
+<tr align="center">
+<th colspan="1">32
+</th>
+<td colspan="32">Порядковый номер, <b>Sequence Number (SN)</b> </td></tr>
+<tr align="center">
+<th colspan="1">64 </th>
+<td colspan="32">Номер подтверждения, <b>Acknowledgment Number (ACK SN)</b>
+</td></tr>
+<tr align="center">
+<th colspan="1">96 </th>
+<td colspan="4">Длина заголовка </td>
+<td colspan="6">Зарезервировано </td>
+<td colspan="6">Флаги </td>
+<td colspan="16">Размер Окна </td></tr>
+<tr align="center">
+<th colspan="1">128 </th>
+<td colspan="16">Контрольная сумма </td>
+<td colspan="16">Указатель важности </td></tr>
+<tr align="center">
+<th colspan="1">160
+</th>
+<td colspan="32">Опции (необязательное, но используется практически всегда)
+</td></tr>
+<tr align="center">
+<th colspan="1">160/192+
+</th>
+<td colspan="32">Данные
+</td></tr></tbody></table>
+ 
+  </li>
+</ul>
+</section>
+
+<section class="slide">
+      <h2>TCP</h2>
+      <h3>flags</h3>
+      <ul>
+        <li>URG — Urgent pointer field is significant</li>
+        <li>ACK — Acknowledgement field is significant</li>
+        <li>PSH — Push function </li>
+        <li>RST — Reset the connection</li>
+        <li>SYN — Synchronize sequence numbers</li>
+        <li>FIN — FIN bit used for connection termination</li>
+</ul>
+</section>
+ <section class="slide">
+      <h2>TCP</h2>
+      <img src="1024px-Tcp_state_diagram_fixed.svg.png">
+    </section>
+    <section class="slide">
+      <h2>TCP</h2>
+<table class="standard">
+<tr> <td width="120px"><b>CLOSED</b> </td> <td>Начальное состояние узла. Фактически фиктивное </td></tr>
+<tr> <td><b>LISTEN</b> </td> <td>Сервер ожидает запросов установления соединения от клиента </td></tr>
+<tr> <td><b>SYN-SENT</b> </td> <td>Клиент отправил запрос серверу на установление соединения и ожидает ответа </td></tr>
+<tr> <td><b>SYN-RECEIVED</b> </td> <td>Сервер получил запрос на соединение, отправил ответный запрос и ожидает подтверждения </td></tr>
+<tr> <td><b>ESTABLISHED</b> </td> <td>Соединение установлено, идёт передача данных </td></tr>
+<tr> <td><b>FIN-WAIT-1</b> </td> <td>Одна из сторон (назовём её узел-1) завершает соединение, отправив сегмент с флагом FIN </td></tr>
+<tr> <td><b>CLOSE-WAIT</b> </td> <td>Другая сторона (узел-2) переходит в это состояние, отправив, в свою очередь сегмент ACK и продолжает одностороннюю передачу
+</td></tr>
+<tr> <td><b>FIN-WAIT-2</b> </td> <td>Узел-1 получает ACK, продолжает чтение и ждёт получения сегмента с флагом FIN </td></tr>
+<tr> <td><b>LAST-ACK</b> </td> <td>Узел-2 заканчивает передачу и отправляет сегмент с флагом FIN </td></tr>
+<tr> <td><b>TIME-WAIT</b> </td> <td>Узел-1 получил сегмент с флагом FIN, отправил сегмент с флагом ACK и ждёт 2*MSL секунд, перед окончательным закрытием соединения
+</td></tr> <tr> <td><b>CLOSING</b> </td> <td>Обе стороны инициировали закрытие соединения одновременно: после отправки сегмента с флагом FIN
+узел-1 также получает сегмент FIN, отправляет ACK и находится в ожидании сегмента ACK (подтверждения
+на свой запрос о разъединении)
+</td></tr>
+</table>
+
+    </section>
+
+<section class="slide">
+      <h2>SCTP</h2>
+      <img src="sctp.png">
+    </section>
+    
+
+<style>
+pre {
+	font-size: 0.8em;
+}
+.deck-current .hideme {
+	display:block;
+}
+.hideme {
+	display:none;
+}
+.whitebg {
+	background: rgba(255,255,255,0.9);
+	padding: 5px;
+	border-radius: 10px;
+}
+</style>
+
+    <!-- End slides. -->
+
+    <!-- Begin extension snippets. Add or remove as needed. -->
+
+    <!-- deck.navigation snippet -->
+    <!--div aria-role="navigation">
+      <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+      <a href="#" class="deck-next-link" title="Next">&#8594;</a>
+    </div-->
+
+    <!-- deck.status snippet -->
+    <!--p class="deck-status" aria-role="status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p-->
+
+    <!-- deck.goto snippet -->
+    <form action="." method="get" class="goto-form">
+      <label for="goto-slide">Go to slide:</label>
+      <input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+      <datalist id="goto-datalist"></datalist>
+      <input type="submit" value="Go">
+    </form>
+
+    <!-- End extension snippets. -->
+  </div>
+
+<!-- Required JS files. -->
+<script src="../deck.js/jquery.min.js"></script>
+<script src="../deck.js/core/deck.core.js"></script>
+
+<!-- Extension JS files. Add or remove as needed. -->
+<script src="../deck.js/extensions/menu/deck.menu.js"></script>
+<script src="../deck.js/extensions/goto/deck.goto.js"></script>
+<script src="../deck.js/extensions/status/deck.status.js"></script>
+<script src="../deck.js/extensions/navigation/deck.navigation.js"></script>
+<script src="../deck.js/extensions/scale/deck.scale.js"></script>
+
+<!-- Initialize the deck. You can put this in an external file if desired. -->
+<script>
+  $(function() {
+    $.deck('.slide');
+  });
+</script>
+</body>
+</html>
